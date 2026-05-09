@@ -12,7 +12,16 @@
         body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-green); color: white; overflow-x: hidden; }
         .font-aesthetic { font-family: 'Great Vibes', cursive; }
         section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; position: relative; border-bottom: 1px solid var(--gold); }
-        .ornamen { position: absolute; width: 120px; opacity: 0.8; pointer-events: none; }
+        
+        /* CSS Khusus untuk Frame agar menempel di pojok */
+        .frame-ornamen { 
+            position: absolute; 
+            width: 120px; 
+            z-index: 50; 
+            pointer-events: none; 
+            opacity: 0.9;
+        }
+        @media (min-width: 768px) { .frame-ornamen { width: 180px; } }
     </style>
 </head>
 <body>
@@ -24,30 +33,41 @@
 
     <!-- SLIDE 1: COVER -->
     <section id="slide1" class="text-center">
-        <img src="frame.png" class="ornamen top-0 left-0" style="filter: invert(70%) sepia(50%) saturate(500%) hue-rotate(10deg);">
-        <h2 class="tracking-[0.5em] uppercase text-sm mb-4">Undangan Pernikahan</h2>
-        <div class="w-48 h-48 rounded-full border-4 border-gold p-2 mb-6 mx-auto">
-             <img src="https://via.placeholder.com/300" class="w-full h-full object-cover rounded-full" alt="Mempelai">
+        <!-- Elemen Frame di 4 Pojok Halaman -->
+        <img src="frame.png" class="frame-ornamen top-0 left-0" alt="frame">
+        <img src="frame.png" class="frame-ornamen top-0 right-0 scale-x-[-1]" alt="frame">
+        <img src="frame.png" class="frame-ornamen bottom-0 left-0 scale-y-[-1]" alt="frame">
+        <img src="frame.png" class="frame-ornamen bottom-0 right-0 scale-x-[-1] scale-y-[-1]" alt="frame">
+
+        <div class="animate__animated animate__fadeIn">
+            <h2 class="tracking-[0.5em] uppercase text-sm mb-4">Undangan Pernikahan</h2>
+            <div class="w-48 h-48 rounded-full border-4 border-gold p-2 mb-6 mx-auto overflow-hidden">
+                 <img src="https://via.placeholder.com/300" class="w-full h-full object-cover rounded-full" alt="Mempelai">
+            </div>
+            <h1 class="text-4xl md:text-5xl font-aesthetic text-amber-400 mb-6 px-4">
+                Umi Nurmalisa Munaki Iswanto <br> & <br> Muhammad Ircham Chamid
+            </h1>
+            <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 mx-auto max-w-xs">
+                <p class="text-xs italic text-amber-200">Kepada Yth:</p>
+                <h3 id="nama-tamu" class="text-xl font-bold">Tamu Undangan</h3>
+            </div>
+            <button onclick="mulaiUndangan()" class="mt-8 px-8 py-3 bg-amber-500 text-dark-green font-bold rounded-full animate-bounce shadow-lg">
+                Buka Undangan
+            </button>
         </div>
-        <h1 class="text-5xl font-aesthetic text-amber-400 mb-4">Umi Nurmalisa Munaki Iswanto & Muhammad Ircham Chamid</h1>
-        <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
-            <p class="text-xs italic">Kepada Yth:</p>
-            <h3 id="nama-tamu" class="text-xl font-bold">Tamu Undangan</h3>
-        </div>
-        <button onclick="mulaiUndangan()" class="mt-8 px-8 py-3 bg-amber-500 text-dark-green font-bold rounded-full animate-bounce">Buka Undangan</button>
     </section>
 
     <!-- SLIDE 2: PROFIL MEMPELAI -->
     <section id="slide2" class="hidden text-center bg-black/20">
         <h2 class="text-3xl font-aesthetic text-amber-400 mb-10">Mempelai</h2>
-        <div class="space-y-8">
-            <div>
-                <h3 class="text-2xl font-bold">Umi Nurmalisa Munaki Iswanto</h3>
-                <p class="text-sm">Putr dari Bpk. Munaki Iswanto & Ibu Lilik Malika (Almh)</p>
+        <div class="space-y-8 px-4">
+            <div class="animate__animated animate__fadeInLeft">
+                <h3 class="text-2xl font-bold text-amber-200">Umi Nurmalisa Munaki Iswanto</h3>
+                <p class="text-sm">Putri dari Bpk. Munaki Iswanto & Ibu Lilik Malika (Almh)</p>
             </div>
             <div class="text-4xl font-aesthetic text-amber-400">&</div>
-            <div>
-                <h3 class="text-2xl font-bold">Muhammad Ircham Chamid</h3>
+            <div class="animate__animated animate__fadeInRight">
+                <h3 class="text-2xl font-bold text-amber-200">Muhammad Ircham Chamid</h3>
                 <p class="text-sm">Putra dari Bpk. Anwari (Alm) & Ibu. Syfa'ah</p>
             </div>
         </div>
@@ -56,52 +76,55 @@
     <!-- SLIDE 3: ACARA & COUNTDOWN -->
     <section id="slide3" class="hidden text-center">
         <h2 class="text-3xl font-aesthetic text-amber-400 mb-6">Waktu Acara</h2>
-        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-md px-4">
             <div class="p-4 bg-white/5 rounded-lg border border-amber-500/30">
-                <h4 class="font-bold text-amber-400">Akad</h4>
-                <p class="text-xs">Senin, 18 Mei 2026</p>
-                <h4 class="font-bold text-amber-400">Pukul</h4>
-                <p class="text-xs">08.00 - Selesai</p>
+                <h4 class="font-bold text-amber-400 text-xl mb-2">Akad</h4>
+                <p class="text-sm">Senin, 18 Mei 2026</p>
+                <p class="text-sm">08.00 - Selesai</p>
             </div>
             <div class="p-4 bg-white/5 rounded-lg border border-amber-500/30">
-                <h4 class="font-bold text-amber-400">Resepsi Nikah</h4>
-                <p class="text-xs">Sabtu, 23 Mei 2026</p>
-                <h4 class="font-bold text-amber-400">Pukul</h4>
-                <p class="text-xs">15.00 - Selesai</p>
+                <h4 class="font-bold text-amber-400 text-xl mb-2">Resepsi Nikah</h4>
+                <p class="text-sm">Sabtu, 23 Mei 2026</p>
+                <p class="text-sm">15.00 - Selesai</p>
             </div>
         </div>
         <div class="mt-10">
             <p class="mb-2 uppercase tracking-widest text-xs text-amber-200">Menuju Hari Bahagia</p>
-            <div id="timer" class="text-2xl font-mono tracking-tighter">00:00:00:00</div>
+            <div id="timer" class="text-3xl font-mono tracking-tighter text-amber-400 font-bold">00:00:00:00</div>
         </div>
     </section>
 
     <!-- SLIDE 4: GALERI -->
     <section id="slide4" class="hidden text-center bg-black/20">
         <h2 class="text-3xl font-aesthetic text-amber-400 mb-6">Wedding Gallery</h2>
-        <div class="grid grid-cols-2 gap-2">
-            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
-            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
-            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
-            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
+        <div class="grid grid-cols-2 gap-2 px-4 max-w-md mx-auto">
+            <img src="https://via.placeholder.com/400" class="rounded border border-gold shadow-md">
+            <img src="https://via.placeholder.com/400" class="rounded border border-gold shadow-md">
+            <img src="https://via.placeholder.com/400" class="rounded border border-gold shadow-md">
+            <img src="https://via.placeholder.com/400" class="rounded border border-gold shadow-md">
         </div>
     </section>
 
     <!-- SLIDE 5: RSVP & LOKASI -->
     <section id="slide5" class="hidden text-center">
-        <h2 class="text-2xl font-bold mb-4">Konfirmasi Kehadiran</h2>
-        <form action="https://formspree.io/f/xkoyqkkp" method="POST" class="w-full max-w-xs space-y-3">
-            <input type="text" name="Nama" placeholder="Nama Anda" class="w-full p-2 rounded bg-white/10 border border-gold text-white outline-none">
-            <select name="Kehadiran" class="w-full p-2 rounded bg-white/10 border border-gold text-white outline-none">
+        <h2 class="text-2xl font-bold mb-4 text-amber-400 font-aesthetic">Konfirmasi Kehadiran</h2>
+        <form action="https://formspree.io/f/xkoyqkkp" method="POST" class="w-full max-w-xs space-y-3 px-4">
+            <input type="text" name="Nama" required placeholder="Nama Anda" class="w-full p-2 rounded bg-white/10 border border-gold text-white outline-none focus:bg-white/20 transition">
+            <select name="Kehadiran" class="w-full p-2 rounded bg-white/10 border border-gold text-white outline-none focus:bg-white/20 transition">
                 <option class="text-black" value="Hadir">Saya Hadir</option>
                 <option class="text-black" value="Tidak Hadir">Berhalangan</option>
             </select>
-            <button type="submit" class="w-full py-3 bg-amber-500 text-black font-bold rounded">Kirim RSVP</button>
+            <button type="submit" class="w-full py-3 bg-amber-500 text-black font-bold rounded shadow-lg hover:bg-amber-400 transition">Kirim RSVP</button>
         </form>
-        <div class="mt-10 w-full">
-             <h3 class="text-amber-400 mb-2">Lokasi Acara</h3>
-             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.5731164!3d-6.9034443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x3eec486714c11438!2sBandung!5e0!3m2!1sid!2sid!4v1700000000000" class="w-full h-48 rounded border-2 border-gold shadow-lg" allowfullscreen="" loading="lazy"></iframe>
+        <div class="mt-10 w-full px-4 max-w-md">
+             <h3 class="text-amber-400 mb-2 font-bold">Lokasi Acara</h3>
+             <div class="rounded-xl overflow-hidden border-2 border-gold shadow-2xl">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.5731164!3d-6.9034443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x3eec486714c11438!2sBandung!5e0!3m2!1sid!2sid!4v1700000000000" class="w-full h-48" allowfullscreen="" loading="lazy"></iframe>
+             </div>
         </div>
+        <footer class="mt-12 text-[10px] text-stone-400 uppercase tracking-widest">
+            Created with Love &copy; 2026
+        </footer>
     </section>
 
     <script>
@@ -113,20 +136,33 @@
             document.getElementById('musik').play();
             // Munculkan semua slide
             const slides = ['slide2', 'slide3', 'slide4', 'slide5'];
-            slides.forEach(id => document.getElementById(id).classList.remove('hidden'));
+            slides.forEach(id => {
+                const el = document.getElementById(id);
+                el.classList.remove('hidden');
+                el.classList.add('animate__animated', 'animate__fadeIn');
+            });
             document.getElementById('slide2').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Timer Sederhana
-        const targetDate = new Date("Dec 31, 2026 00:00:00").getTime();
+        // Timer Sederhana (Target 23 Mei 2026 sesuai tanggal resepsi)
+        const targetDate = new Date("May 23, 2026 15:00:00").getTime();
         setInterval(() => {
             const now = new Date().getTime();
             const diff = targetDate - now;
+            
+            if (diff < 0) {
+                document.getElementById("timer").innerHTML = "ACARA SEDANG BERLANGSUNG";
+                return;
+            }
+
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const s = Math.floor((diff % (1000 * 60)) / 1000);
-            document.getElementById("timer").innerHTML = `${d}d : ${h}h : ${m}m : ${s}s`;
+            
+            // Format 2 digit (01:05:09)
+            const format = (n) => n < 10 ? '0' + n : n;
+            document.getElementById("timer").innerHTML = `${format(d)} Hari : ${format(h)} Jam : ${format(m)} Menit : ${format(s)} Detik`;
         }, 1000);
     </script>
 </body>
