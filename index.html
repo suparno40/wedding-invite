@@ -3,37 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
+    <title>Undangan Pernikahan - Umi & Ircham</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap');
-        :root { --gold: #d4af37; --dark-green: #00332c; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-green); color: white; overflow-x: hidden; }
-        .font-aesthetic { font-family: 'Great Vibes', cursive; }
         
-        section { 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            padding: 2rem; 
-            position: relative; 
-            border-bottom: 1px solid var(--gold); 
+        :root {
+            --gold: #d4af37; [cite: 22]
         }
 
-        /* CSS KHUSUS FRAME FULL PINGGIRAN */
-        .full-frame {
-            position: absolute;
-            width: 150px; /* Ukuran hiasan di pojok */
-            z-index: 50;
-            pointer-events: none;
-            /* Trik menghilangkan background hitam pada gambar */
-            mix-blend-mode: screen; 
-            opacity: 0.8;
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            overflow-x: hidden;
         }
-        @media (min-width: 768px) { .full-frame { width: 250px; } }
+
+        .font-aesthetic {
+            font-family: 'Great Vibes', cursive; [cite: 23, 24]
+        }
+
+        /* Background Full Screen bergaya Demo */
+        .hero-bg {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Bingkai Garis Halus di Pinggir Halaman */
+        .inner-border {
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Hiasan Daun Emas di Pojok (Menggunakan mix-blend-mode untuk menghapus background hitam) */
+        .frame-corner {
+            position: absolute;
+            width: 120px; [cite: 27]
+            z-index: 10;
+            mix-blend-mode: screen; [cite: 28]
+            opacity: 0.8; [cite: 29]
+            pointer-events: none;
+        }
+
+        section {
+            min-height: 100vh; [cite: 24]
+            padding: 4rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -42,68 +78,91 @@
         <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
     </audio>
 
-    <!-- SLIDE 1: COVER DENGAN HIASAN DI POJOK-POJOK -->
-    <section id="slide1" class="text-center">
-        <!-- Hiasan di 4 Pojok Layar -->
-        <img src="frame.jpg" class="full-frame top-0 left-0" alt="ornamen">
-        <img src="frame.jpg" class="full-frame top-0 right-0 scale-x-[-1]" alt="ornamen">
-        <img src="frame.jpg" class="full-frame bottom-0 left-0 scale-y-[-1]" alt="ornamen">
-        <img src="frame.jpg" class="full-frame bottom-0 right-0 scale-x-[-1] scale-y-[-1]" alt="ornamen">
-
-        <div class="animate__animated animate__fadeIn relative z-10">
-            <h2 class="tracking-[0.5em] uppercase text-xs mb-6">Undangan Pernikahan</h2>
-            
-            <div class="w-44 h-44 rounded-full border-4 border-gold p-2 mb-8 mx-auto overflow-hidden shadow-2xl">
-                 <img src="https://via.placeholder.com/300" class="w-full h-full object-cover rounded-full" alt="Mempelai">
-            </div>
-
-            <h1 class="text-5xl font-aesthetic text-amber-400 mb-6 px-4">
-                Umi & Ircham
-            </h1>
-
-            <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20 mx-auto max-w-xs mb-8">
-                <p class="text-xs italic text-amber-200">Kepada Yth:</p>
-                <h3 id="nama-tamu" class="text-xl font-bold">Tamu Spesial</h3>
-            </div>
-
-            <button onclick="mulaiUndangan()" class="px-10 py-3 bg-amber-500 text-dark-green font-bold rounded-full animate-bounce shadow-xl uppercase tracking-widest text-sm">
-                Buka Undangan
-            </button>
-        </div>
-    </section>
-
-    <!-- SLIDE 2: PROFIL -->
-    <section id="slide2" class="hidden text-center bg-black/20">
-        <!-- Hiasan pojok juga bisa ditaruh di sini jika ingin konsisten -->
-        <img src="frame.jpg" class="full-frame top-0 left-0 opacity-40" style="mix-blend-mode: screen;">
+    <div id="cover" class="hero-bg">
+        <div class="inner-border"></div>
         
-        <h2 class="text-3xl font-aesthetic text-amber-400 mb-10">Mempelai</h2>
-        <div class="space-y-8 px-4">
-            <div>
-                <h3 class="text-2xl font-bold text-amber-200">Umi Nurmalisa Munaki Iswanto</h3>
-                <p class="text-sm">Putri dari Bpk. Munaki Iswanto & Ibu Lilik Malika (Almh)</p>
-            </div>
-            <div class="text-4xl font-aesthetic text-amber-400">&</div>
-            <div>
-                <h3 class="text-2xl font-bold text-amber-200">Muhammad Ircham Chamid</h3>
-                <p class="text-sm">Putra dari Bpk. Anwari (Alm) & Ibu. Syfa'ah</p>
+        <img src="frame.jpg" class="frame-corner top-0 left-0"> [cite: 30]
+        <img src="frame.jpg" class="frame-corner bottom-0 right-0 scale-x-[-1] scale-y-[-1]"> [cite: 31]
+
+        <div class="relative z-20 animate__animated animate__fadeIn">
+            <p class="tracking-[0.5em] text-xs uppercase mb-4">The Wedding Of</p>
+            <h1 class="text-6xl md:text-8xl font-aesthetic text-amber-400 mb-6">Umi & Ircham</h1> [cite: 32]
+            <p class="text-sm tracking-widest mb-10">SABTU, 23 MEI 2026</p>
+            
+            <div class="mt-4 p-6 bg-black/40 backdrop-blur-sm border border-white/10 rounded-lg max-w-xs mx-auto">
+                <p class="text-[10px] uppercase tracking-widest mb-2 text-gray-300">Kepada Yth:</p>
+                <h2 id="nama-tamu" class="text-xl font-bold mb-6">Tamu Spesial</h2> [cite: 33]
+                <button onclick="mulaiUndangan()" class="px-8 py-3 bg-white text-black font-bold rounded-full hover:bg-amber-400 transition-all duration-300 shadow-xl uppercase tracking-widest text-xs">
+                    Buka Undangan
+                </button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Script tetap sama -->
+    <div id="konten" class="hidden">
+        
+        <section class="bg-[#0a0a0a]"> [cite: 34]
+            <h2 class="text-amber-400 font-aesthetic text-4xl mb-12">Assalamu’alaikum Wr. Wb.</h2>
+            <div class="space-y-12">
+                <div class="animate__animated animate__fadeInUp">
+                    <h3 class="text-2xl font-bold text-amber-200">Umi Nurmalisa Munaki Iswanto</h3> [cite: 35]
+                    <p class="text-xs text-gray-400 mt-2">Putri dari Bpk. Munaki Iswanto & Ibu Lilik Malika (Almh)</p> [cite: 36]
+                </div>
+                <div class="text-4xl font-aesthetic text-amber-400">&</div>
+                <div class="animate__animated animate__fadeInUp">
+                    <h3 class="text-2xl font-bold text-amber-200">Muhammad Ircham Chamid</h3> [cite: 37]
+                    <p class="text-xs text-gray-400 mt-2">Putra dari Bpk. Anwari (Alm) & Ibu. Syfa'ah</p> [cite: 37]
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-black relative">
+            <div class="inner-border" style="opacity: 0.2;"></div>
+            <h2 class="text-amber-400 font-aesthetic text-5xl mb-12">Rangkaian Acara</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl px-6">
+                <div class="p-10 border border-amber-400/20 rounded-2xl bg-stone-900/50 backdrop-blur-sm">
+                    <h4 class="font-bold text-2xl text-amber-400 mb-4 tracking-widest uppercase">Akad Nikah</h4>
+                    <div class="w-12 h-0.5 bg-amber-400 mx-auto mb-6"></div>
+                    <p class="text-lg font-semibold">Senin, 18 Mei 2026</p>
+                    <p class="text-sm text-gray-300">08:00 WIB - Selesai</p>
+                </div>
+
+                <div class="p-10 border border-amber-400/20 rounded-2xl bg-stone-900/50 backdrop-blur-sm">
+                    <h4 class="font-bold text-2xl text-amber-400 mb-4 tracking-widest uppercase">Resepsi</h4>
+                    <div class="w-12 h-0.5 bg-amber-400 mx-auto mb-6"></div>
+                    <p class="text-lg font-semibold">Sabtu, 23 Mei 2026</p>
+                    <p class="text-sm text-gray-300">15:00 WIB - Selesai</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
     <script>
+        // Mengambil nama tamu dari URL [cite: 38]
         const urlParams = new URLSearchParams(window.location.search);
         document.getElementById('nama-tamu').innerText = urlParams.get('to') || 'Tamu Spesial';
 
         function mulaiUndangan() {
+            // Memutar musik saat tombol ditekan [cite: 39]
             document.getElementById('musik').play();
-            const slides = ['slide2']; // Tambahkan slide3, 4, 5 di sini
-            slides.forEach(id => {
-                document.getElementById(id).classList.remove('hidden');
+            
+            // Menampilkan konten undangan [cite: 39]
+            const konten = document.getElementById('konten');
+            konten.classList.remove('hidden');
+            
+            // Mengarahkan ke bagian profil dengan transisi halus [cite: 40]
+            window.scrollBy({
+                top: window.innerHeight,
+                behavior: 'smooth'
             });
-            document.getElementById('slide2').scrollIntoView({ behavior: 'smooth' });
+
+            document.body.style.overflow = 'auto';
         }
+
+        // Mencegah scroll sebelum undangan dibuka
+        document.body.style.overflow = 'hidden';
     </script>
 </body>
 </html>
