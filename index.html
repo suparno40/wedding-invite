@@ -137,6 +137,61 @@
             </div>
         </section>
 
+        <section class="bg-[#0a0a0a] relative">
+    <h2 class="text-amber-400 font-aesthetic text-5xl mb-8">Lokasi Acara</h2>
+    <div class="w-full max-w-4xl px-6">
+        <div class="rounded-2xl overflow-hidden border-2 border-amber-400/20 shadow-2xl mb-6">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.2139215042!2d112.658!3d-7.977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTgnMzcuMiJTIDExMsKwMzknMjguOCJF!5e0!3m2!1sid!2sid!4v1700000000000" 
+                class="w-full h-80 border-0" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+        <a href="https://maps.app.goo.gl/..." target="_blank" class="inline-block px-8 py-3 bg-amber-500 text-black font-bold rounded-full hover:bg-white transition-all uppercase tracking-widest text-xs">
+            Buka Petunjuk Jalan
+        </a>
+    </div>
+</section>
+
+<section class="bg-black">
+    <h2 class="text-amber-400 font-aesthetic text-5xl mb-8">Konfirmasi Kehadiran</h2>
+    <form class="w-full max-w-md px-6 text-left bg-stone-900/50 p-8 rounded-2xl border border-white/10">
+        <div class="mb-4">
+            <label class="block text-xs uppercase tracking-widest mb-2 text-amber-200">Nama Lengkap</label>
+            <input type="text" class="w-full bg-black/50 border border-white/20 p-3 rounded text-white focus:border-amber-400 outline-none" placeholder="Masukkan nama Anda">
+        </div>
+        <div class="mb-4">
+            <label class="block text-xs uppercase tracking-widest mb-2 text-amber-200">Kehadiran</label>
+            <select class="w-full bg-black/50 border border-white/20 p-3 rounded text-white outline-none">
+                <option value="hadir">Ya, Saya Akan Hadir</option>
+                <option value="tidak">Maaf, Tidak Bisa Hadir</option>
+                <option value="ragu">Masih Ragu</option>
+            </select>
+        </div>
+        <button type="submit" class="w-full py-3 bg-amber-500 text-black font-bold rounded uppercase tracking-widest hover:bg-amber-400 transition-all">
+            Kirim Konfirmasi
+        </button>
+    </form>
+</section>
+
+<section class="bg-[#0a0a0a]">
+    <h2 class="text-amber-400 font-aesthetic text-5xl mb-4">Kado Digital</h2>
+    <p class="text-sm text-gray-400 mb-10">Doa restu Anda merupakan karunia terindah, namun jika ingin memberikan tanda kasih, silakan melalui:</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl px-6">
+        <div class="p-6 border border-amber-400/20 rounded-xl bg-stone-900 shadow-xl">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg" class="h-8 mb-4 mx-auto" alt="BCA">
+            <p class="text-lg font-bold tracking-widest">1234567890</p>
+            <p class="text-xs text-gray-400 uppercase mt-2">A/N Umi Nurmalisa</p>
+            <button onclick="copyToClipboard('1234567890')" class="mt-4 text-xs text-amber-400 hover:underline">Salin Nomor Rekening</button>
+        </div>
+        
+        <div class="p-6 border border-amber-400/20 rounded-xl bg-stone-900 shadow-xl">
+             <h4 class="font-bold text-xl mb-4">DANA / QRIS</h4>
+             <img src="https://via.placeholder.com/150" class="w-32 h-32 mx-auto mb-4" alt="QR Code">
+             <p class="text-xs text-gray-400 uppercase">A/N Muhammad Ircham</p>
+        </div>
+    </div>
+</section>
+
     </div>
 
     <script>
