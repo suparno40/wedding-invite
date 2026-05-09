@@ -8,27 +8,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Noto+Serif+Arabic&display=swap');
+        
         body { font-family: 'Montserrat', sans-serif; background-color: #1a1a1a; color: white; overflow-x: hidden; margin: 0; }
         .font-aesthetic { font-family: 'Great Vibes', cursive; }
         .font-arabic { font-family: 'Noto Serif Arabic', serif; }
+
+        /* Background Animasi & Overlay */
         .hero-bg {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80');
             background-size: cover; background-position: center; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative;
         }
-        #slide2 { background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('foto1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
-        #slide3 { background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('foto2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
-        section { min-height: 100vh; padding: 5rem 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; }
-        .full-frame { position: absolute; width: 130px; z-index: 100; pointer-events: none; }
+
+        #slide-mempelai { background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('foto1.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
+        #slide-acara { background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('foto2.jpg'); background-size: cover; background-position: center; background-attachment: fixed; }
+
+        section { min-height: 100vh; padding: 6rem 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; }
         
-        .quote-container {
-            max-width: 600px;
-            margin: 2rem auto;
-            padding: 2.5rem;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 1.5rem;
-            background: rgba(0, 0, 0, 0.4);
-        }
+        .card-glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 1.5rem; padding: 2rem; }
+        
+        .full-frame { position: absolute; width: 120px; z-index: 10; pointer-events: none; opacity: 0.7; }
     </style>
 </head>
 <body>
@@ -37,100 +36,127 @@
         <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
     </audio>
 
-    <div id="cover" class="hero-bg">
+    <div id="cover" class="hero-bg overflow-hidden">
         <img src="https://www.transparentpng.com/download/gold-frame/luxury-golden-corner-frame-png-8.png" class="full-frame top-0 left-0">
         <img src="https://www.transparentpng.com/download/gold-frame/luxury-golden-corner-frame-png-8.png" class="full-frame bottom-0 right-0" style="transform: rotate(180deg);">
-        <div class="relative z-20 text-center">
-            <p class="tracking-[0.5em] text-xs uppercase mb-4 text-amber-200">The Wedding Of</p>
-            <h1 class="text-6xl md:text-8xl font-aesthetic text-amber-400 mb-6">Umi & Ircham</h1>
-            <p class="text-sm tracking-widest mb-10">SABTU, 23 MEI 2026</p>
-            <div class="p-6 bg-black/40 backdrop-blur-md border border-white/10 rounded-lg max-w-xs mx-auto">
-                <h2 id="nama-tamu" class="text-xl font-bold mb-6">Tamu Spesial</h2>
-                <button onclick="mulaiUndangan()" class="px-8 py-3 bg-white text-black font-bold rounded-full hover:bg-amber-400 transition-all text-xs shadow-2xl uppercase tracking-widest">Buka Undangan</button>
+        
+        <div class="relative z-20 text-center animate__animated animate__fadeIn">
+            <p class="tracking-[0.4em] text-[10px] uppercase mb-4 text-amber-200">The Wedding Of</p>
+            <h1 class="text-6xl md:text-8xl font-aesthetic text-amber-400 mb-6 drop-shadow-lg">Umi & Ircham</h1>
+            <p class="text-sm tracking-[0.3em] mb-12">SABTU, 23 MEI 2026</p>
+            
+            <div class="card-glass max-w-xs mx-auto">
+                <p class="text-[9px] uppercase tracking-widest mb-4 text-gray-400">Yth. Bapak/Ibu/Saudara/i</p>
+                <h2 id="nama-tamu" class="text-xl font-bold mb-8">Tamu Spesial</h2>
+                <button onclick="mulaiUndangan()" class="px-10 py-3 bg-amber-500 text-black font-bold rounded-full hover:bg-white transition-all text-xs uppercase tracking-widest shadow-xl">
+                    Buka Undangan
+                </button>
             </div>
         </div>
     </div>
 
     <div id="konten" class="hidden">
-        <section id="slide2">
-            <h2 class="text-amber-400 font-aesthetic text-5xl mb-12">Mempelai</h2>
-            <div class="space-y-12">
-                <div><h3 class="text-2xl font-bold text-amber-200">Umi Nurmalisa</h3><p class="text-xs text-gray-300 mt-2">Putri dari Bpk. Munaki & Ibu Lilik (Almh)</p></div>
-                <div class="text-4xl font-aesthetic text-amber-400">&</div>
-                <div><h3 class="text-2xl font-bold text-amber-200">Muhammad Ircham</h3><p class="text-xs text-gray-300 mt-2">Putra dari Bpk. Anwari (Alm) & Ibu Syfa'ah</p></div>
+        
+        <section class="bg-[#121212]">
+            <div class="max-w-2xl px-6 animate__animated animate__fadeInUp">
+                <p class="text-amber-400 text-3xl mb-6 font-arabic">وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا...</p>
+                <p class="text-sm leading-relaxed italic text-gray-300 mb-6">
+                    "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih sayang. Sesungguhnya pada yang demikian itu terdapat tanda-tanda bagi orang-orang yang beriman."
+                </p>
+                <p class="text-xs font-bold text-amber-500 tracking-widest">(QS. AR-RUM: 21)</p>
             </div>
         </section>
 
-        <section id="slide3">
-            <h2 class="text-amber-400 font-aesthetic text-6xl mb-12">Rangkaian Acara</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl px-6 relative z-10">
-                <div class="p-10 border border-amber-400/20 rounded-2xl bg-black/60 backdrop-blur-sm shadow-xl">
-                    <h4 class="font-bold text-2xl text-amber-400 mb-4 uppercase tracking-widest">Akad Nikah</h4>
-                    <p class="text-lg">Senin, 18 Mei 2026</p>
-                    <p class="text-sm text-gray-400 mt-2">08:00 WIB - Selesai</p>
+        <section id="slide-mempelai">
+            <h2 class="text-amber-400 font-aesthetic text-5xl mb-16">Mempelai</h2>
+            <div class="grid grid-cols-1 gap-12 w-full max-w-md px-6">
+                <div class="animate__animated animate__fadeInLeft">
+                    <h3 class="text-2xl font-bold text-amber-200">Umi Nurmalisa Munaki Iswanto</h3>
+                    <p class="text-[10px] text-gray-400 mt-3 uppercase tracking-widest">Putri Kedua dari</p>
+                    <p class="text-sm text-white">Bpk. Munaki Iswanto & Ibu Lilik Malika (Almh)</p>
                 </div>
-                <div class="p-10 border border-amber-400/20 rounded-2xl bg-black/60 backdrop-blur-sm shadow-xl">
-                    <h4 class="font-bold text-2xl text-amber-400 mb-4 uppercase tracking-widest">Resepsi</h4>
-                    <p class="text-lg">Sabtu, 23 Mei 2026</p>
-                    <p class="text-sm text-gray-400 mt-2">15:00 WIB - Selesai</p>
+                
+                <div class="text-4xl font-aesthetic text-amber-400 my-4 animate__animated animate__zoomIn">&</div>
+                
+                <div class="animate__animated animate__fadeInRight">
+                    <h3 class="text-2xl font-bold text-amber-200">Muhammad Ircham Chamid</h3>
+                    <p class="text-[10px] text-gray-400 mt-3 uppercase tracking-widest">Putra Terakhir dari</p>
+                    <p class="text-sm text-white">Bpk. Anwari (Alm) & Ibu Syfa'ah</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="slide-acara">
+            <h2 class="text-amber-400 font-aesthetic text-5xl mb-12">Rangkaian Acara</h2>
+            <div class="grid grid-cols-1 gap-6 w-full max-w-lg px-6">
+                <div class="card-glass border-amber-500/20">
+                    <h4 class="font-bold text-amber-400 text-lg mb-2 uppercase tracking-tighter">Akad Nikah</h4>
+                    <div class="h-px bg-white/10 w-full my-4"></div>
+                    <p class="text-sm mb-1">Senin, 18 Mei 2026</p>
+                    <p class="text-[10px] text-gray-400">08.00 WIB - Selesai</p>
+                </div>
+                
+                <div class="card-glass border-amber-500/20">
+                    <h4 class="font-bold text-amber-400 text-lg mb-2 uppercase tracking-tighter">Resepsi</h4>
+                    <div class="h-px bg-white/10 w-full my-4"></div>
+                    <p class="text-sm mb-1">Sabtu, 23 Mei 2026</p>
+                    <p class="text-[10px] text-gray-400">15.00 WIB - Selesai</p>
                 </div>
             </div>
         </section>
 
         <section class="bg-[#0a0a0a]">
-            <h2 class="text-amber-400 font-aesthetic text-5xl mb-6">Doa & Harapan</h2>
-            <div class="px-6 w-full max-w-2xl">
-                <div class="quote-container animate__animated animate__fadeIn">
-                    <p class="text-amber-400 text-3xl mb-4 font-arabic">وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا...</p>
-                    <p class="text-sm leading-relaxed italic text-gray-200 mb-4">
-                        "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih sayang. Sesungguhnya pada yang demikian itu terdapat tanda-tanda bagi orang-orang yang beriman."
-                    </p>
-                    <p class="text-xs font-bold text-amber-500">(QS. Ar-Rum: 21)</p>
-                </div>
-                
-                <div class="mt-8 mb-12">
-                    <p class="text-[10px] text-gray-500 uppercase tracking-[0.3em] mb-4">Lokasi Acara</p>
-                    <p class="text-sm mb-6 text-gray-300 italic">Pandaan, Pasuruan, Jawa Timur</p>
-    
-                    <a href="https://maps.app.goo.gl/Kgh34yhCXdYiWomHA" 
-                       target="_blank" 
-                       class="text-amber-400 underline font-bold text-sm hover:text-amber-200 transition-colors">
-                        Klik di sini untuk buka petunjuk jalan
-                    </a>
-                </div>
-
-                <form class="text-left bg-stone-900/80 p-8 rounded-2xl border border-white/10 shadow-2xl">
-                    <label class="block text-[10px] text-amber-200 mb-2 uppercase tracking-widest">RSVP</label>
-                    <input type="text" class="w-full bg-black/40 border border-white/20 p-3 rounded mb-4 outline-none text-white focus:border-amber-400" placeholder="Nama Anda">
-                    <button type="button" onclick="alert('Terima kasih!')" class="w-full py-3 bg-amber-500 text-black font-bold rounded text-xs uppercase tracking-widest shadow-md">Kirim Konfirmasi</button>
-                </form>
+            <h2 class="text-amber-400 font-aesthetic text-5xl mb-12">Lokasi & Konfirmasi</h2>
+            
+            <div class="w-full max-w-xl px-6 mb-16 text-center">
+                <p class="text-xs text-gray-400 uppercase tracking-[0.3em] mb-4">Lokasi Acara</p>
+                <p class="text-sm mb-8 text-gray-200 italic">Pandaan, Pasuruan, Jawa Timur</p>
+                <a href="https://maps.app.goo.gl/Kgh34yhCXdYiWomHA" target="_blank" class="text-amber-400 border border-amber-400/40 px-8 py-3 rounded-full hover:bg-amber-400 hover:text-black transition-all text-[10px] font-bold uppercase tracking-widest">
+                    Lihat Peta Lokasi
+                </a>
             </div>
+
+            <form class="w-full max-w-md bg-stone-900/60 p-8 rounded-3xl border border-white/5 shadow-2xl text-left">
+                <p class="text-[10px] text-amber-200 uppercase tracking-widest mb-6">Konfirmasi Kehadiran</p>
+                <input type="text" class="w-full bg-black/40 border border-white/10 p-3 rounded-lg mb-4 outline-none focus:border-amber-400 text-white text-sm" placeholder="Nama Lengkap">
+                <select class="w-full bg-black/40 border border-white/10 p-3 rounded-lg mb-6 outline-none text-white text-sm">
+                    <option>Hadir</option>
+                    <option>Tidak Hadir</option>
+                </select>
+                <button type="button" onclick="alert('Konfirmasi Anda telah terkirim. Terima kasih!')" class="w-full py-3 bg-amber-500 text-black font-bold rounded-lg text-xs uppercase tracking-widest shadow-md">Kirim Konfirmasi</button>
+            </form>
         </section>
 
         <section class="bg-black">
-            <h2 class="text-amber-400 font-aesthetic text-5xl mb-12">Kado Digital</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-xl px-6 text-center">
-                <div class="p-6 border border-amber-400/20 rounded-xl bg-stone-900 shadow-xl">
-                    <p class="text-xs text-amber-200 mb-2 uppercase">Bank BCA</p>
-                    <p class="text-lg font-bold tracking-widest text-white">1234567890</p>
-                    <p class="text-[10px] text-gray-500 mt-2 uppercase">A/N Umi Nurmalisa</p>
-                    <button onclick="copyText('1234567890')" class="mt-4 text-[10px] text-amber-400 border border-amber-400/20 px-4 py-1 rounded-full hover:bg-amber-400 hover:text-black transition-all">Salin Rekening</button>
+            <h2 class="text-amber-400 font-aesthetic text-5xl mb-6">Kado Digital</h2>
+            <p class="text-[10px] text-gray-500 italic mb-12">Doa restu Anda merupakan hadiah terindah bagi kami</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-xl px-6">
+                <div class="card-glass">
+                    <p class="text-[10px] text-amber-400 uppercase mb-2">Bank BCA</p>
+                    <p class="text-lg font-bold tracking-widest">1234567890</p>
+                    <p class="text-[9px] text-gray-500 mt-2">A/N Umi Nurmalisa</p>
+                    <button onclick="copyText('1234567890')" class="mt-4 text-[9px] text-amber-400 underline">Salin No. Rekening</button>
                 </div>
-                <div class="p-6 border border-amber-400/20 rounded-xl bg-stone-900 shadow-xl">
-                    <p class="text-xs text-amber-200 mb-2 uppercase">DANA</p>
-                    <p class="text-lg font-bold tracking-widest text-white">081234567890</p>
-                    <p class="text-[10px] text-gray-500 mt-2 uppercase">A/N Muhammad Ircham</p>
+                <div class="card-glass">
+                    <p class="text-[10px] text-amber-400 uppercase mb-2">DANA</p>
+                    <p class="text-lg font-bold tracking-widest">081234567890</p>
+                    <p class="text-[9px] text-gray-500 mt-2">A/N Muhammad Ircham</p>
                 </div>
             </div>
         </section>
+
     </div>
 
     <script>
+        // Ambil nama dari parameter URL
         const urlParams = new URLSearchParams(window.location.search);
         document.getElementById('nama-tamu').innerText = urlParams.get('to') || 'Tamu Spesial';
 
         function mulaiUndangan() {
-            document.getElementById('musik').play();
+            const musik = document.getElementById('musik');
+            musik.play().catch(() => console.log("Autoplay dicegah oleh browser."));
+            
             document.getElementById('konten').classList.remove('hidden');
             window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
             document.body.style.overflow = 'auto';
@@ -138,9 +164,10 @@
 
         function copyText(text) {
             navigator.clipboard.writeText(text);
-            alert("Nomor berhasil disalin!");
+            alert("Nomor rekening berhasil disalin!");
         }
 
+        // Kunci scroll sebelum undangan dibuka
         document.body.style.overflow = 'hidden';
     </script>
 </body>
