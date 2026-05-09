@@ -3,44 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undangan Pernikahan</title>
-    <!-- Tailwind CSS untuk desain responsif & cepat -->
+    <title>Undangan Pernikahan Digital</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap');
+        :root { --gold: #d4af37; --dark-green: #00332c; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--dark-green); color: white; overflow-x: hidden; }
         .font-aesthetic { font-family: 'Great Vibes', cursive; }
-        body { font-family: 'Montserrat', sans-serif; }
+        section { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; position: relative; border-bottom: 1px solid var(--gold); }
+        .ornamen { position: absolute; width: 120px; opacity: 0.8; pointer-events: none; }
     </style>
 </head>
-<body class="bg-stone-100 text-stone-800">
+<body>
 
-    <!-- Cover Depan -->
-    <section class="h-screen flex flex-col items-center justify-center text-center p-6 bg-white shadow-inner">
-        <h2 class="text-xl tracking-widest uppercase mb-4">The Wedding of</h2>
-        <h1 class="text-6xl font-aesthetic text-amber-600 my-4">Nama Pria & Nama Wanita</h1>
-        
-        <!-- Fitur Custom Nama Tamu -->
-        <div class="mt-8 p-4 border border-amber-200 rounded-lg">
-            <p class="text-sm italic">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
-            <h3 id="nama-tamu" class="text-2xl font-bold mt-2 text-stone-700">-</h3>
+    <!-- Musik Latar -->
+    <audio id="musik" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- SLIDE 1: COVER -->
+    <section id="slide1" class="text-center">
+        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055666.png" class="ornamen top-0 left-0" style="filter: invert(70%) sepia(50%) saturate(500%) hue-rotate(10deg);">
+        <h2 class="tracking-[0.5em] uppercase text-sm mb-4">Undangan Pernikahan</h2>
+        <div class="w-48 h-48 rounded-full border-4 border-gold p-2 mb-6 mx-auto">
+             <img src="https://via.placeholder.com/300" class="w-full h-full object-cover rounded-full" alt="Mempelai">
         </div>
-
-        <button onclick="bukaUndangan()" class="mt-10 px-8 py-3 bg-amber-600 text-white rounded-full hover:bg-amber-700 transition">
-            Buka Undangan
-        </button>
+        <h1 class="text-5xl font-aesthetic text-amber-400 mb-4">Adam & Hawa</h1>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-lg border border-white/20">
+            <p class="text-xs italic">Kepada Yth:</p>
+            <h3 id="nama-tamu" class="text-xl font-bold">Tamu Undangan</h3>
+        </div>
+        <button onclick="mulaiUndangan()" class="mt-8 px-8 py-3 bg-amber-500 text-dark-green font-bold rounded-full animate-bounce">Buka Undangan</button>
     </section>
 
-    <!-- Script Sederhana -->
-    <script>
-        // Logika mengambil nama tamu dari link (?to=NamaTamu)
-        const urlParams = new URLSearchParams(window.location.search);
-        const tamu = urlParams.get('to') || 'Tamu Spesial';
-        document.getElementById('nama-tamu').innerText = tamu;
+    <!-- SLIDE 2: PROFIL MEMPELAI -->
+    <section id="slide2" class="hidden text-center bg-black/20">
+        <h2 class="text-3xl font-aesthetic text-amber-400 mb-10">Mempelai</h2>
+        <div class="space-y-8">
+            <div>
+                <h3 class="text-2xl font-bold">Adam Syahputra</h3>
+                <p class="text-sm">Putra dari Bpk. Fulan & Ibu Fulanah</p>
+            </div>
+            <div class="text-4xl font-aesthetic text-amber-400">&</div>
+            <div>
+                <h3 class="text-2xl font-bold">Hawa Syahputri</h3>
+                <p class="text-sm">Putri dari Bpk. Fulan & Ibu Fulanah</p>
+            </div>
+        </div>
+    </section>
 
-        function bukaUndangan() {
-            alert("Musik akan diputar dan undangan terbuka! (Ini adalah kerangka dasar)");
-            // Di sini nanti kita tambahkan fungsi scroll dan play musik
+    <!-- SLIDE 3: ACARA & COUNTDOWN -->
+    <section id="slide3" class="hidden text-center">
+        <h2 class="text-3xl font-aesthetic text-amber-400 mb-6">Waktu Acara</h2>
+        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+            <div class="p-4 bg-white/5 rounded-lg border border-amber-500/30">
+                <h4 class="font-bold text-amber-400">Akad</h4>
+                <p class="text-xs">08.00 - 10.00 WIB</p>
+            </div>
+            <div class="p-4 bg-white/5 rounded-lg border border-amber-500/30">
+                <h4 class="font-bold text-amber-400">Resepsi</h4>
+                <p class="text-xs">11.00 - Selesai</p>
+            </div>
+        </div>
+        <div class="mt-10">
+            <p class="mb-2 uppercase tracking-widest text-xs text-amber-200">Menuju Hari Bahagia</p>
+            <div id="timer" class="text-2xl font-mono tracking-tighter">00:00:00:00</div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: GALERI -->
+    <section id="slide4" class="hidden text-center bg-black/20">
+        <h2 class="text-3xl font-aesthetic text-amber-400 mb-6">Wedding Gallery</h2>
+        <div class="grid grid-cols-2 gap-2">
+            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
+            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
+            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
+            <img src="https://via.placeholder.com/200" class="rounded border border-gold">
+        </div>
+    </section>
+
+    <!-- SLIDE 5: RSVP & LOKASI -->
+    <section id="slide5" class="hidden text-center">
+        <h2 class="text-2xl font-bold mb-4">Konfirmasi Kehadiran</h2>
+        <form action="https://formspree.io/f/KODE_ANDA" method="POST" class="w-full max-w-xs space-y-3">
+            <input type="text" name="Nama" placeholder="Nama Anda" class="w-full p-2 rounded bg-white/10 border border-gold text-white outline-none">
+            <select name="Kehadiran" class="w-full p-2 rounded bg-white/10 border border-gold text-white outline-none">
+                <option class="text-black" value="Hadir">Saya Hadir</option>
+                <option class="text-black" value="Tidak Hadir">Berhalangan</option>
+            </select>
+            <button type="submit" class="w-full py-3 bg-amber-500 text-black font-bold rounded">Kirim RSVP</button>
+        </form>
+        <div class="mt-10 w-full">
+             <h3 class="text-amber-400 mb-2">Lokasi Acara</h3>
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126748.56347862248!2d107.5731164!3d-6.9034443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e6398252477f%3A0x3eec486714c11438!2sBandung!5e0!3m2!1sid!2sid!4v1700000000000" class="w-full h-48 rounded border-2 border-gold shadow-lg" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <script>
+        // Logika Nama Tamu
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('nama-tamu').innerText = urlParams.get('to') || 'Tamu Spesial';
+
+        function mulaiUndangan() {
+            document.getElementById('musik').play();
+            // Munculkan semua slide
+            const slides = ['slide2', 'slide3', 'slide4', 'slide5'];
+            slides.forEach(id => document.getElementById(id).classList.remove('hidden'));
+            document.getElementById('slide2').scrollIntoView({ behavior: 'smooth' });
         }
+
+        // Timer Sederhana
+        const targetDate = new Date("Dec 31, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById("timer").innerHTML = `${d}d : ${h}h : ${m}m : ${s}s`;
+        }, 1000);
     </script>
 </body>
 </html>
