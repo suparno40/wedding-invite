@@ -7,9 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Noto+Serif+Arabic&display=swap');
         body { font-family: 'Montserrat', sans-serif; background-color: #1a1a1a; color: white; overflow-x: hidden; margin: 0; }
         .font-aesthetic { font-family: 'Great Vibes', cursive; }
+        .font-arabic { font-family: 'Noto Serif Arabic', serif; }
         .hero-bg {
             background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1350&q=80');
@@ -20,13 +21,15 @@
         section { min-height: 100vh; padding: 5rem 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; }
         .full-frame { position: absolute; width: 130px; z-index: 100; pointer-events: none; }
         
-        .map-container { position: relative; width: 100%; height: 350px; border-radius: 1rem; overflow: hidden; }
-        .map-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.65); display: flex; align-items: center; justify-content: center;
-            z-index: 10; cursor: pointer; transition: 0.3s;
+        .quote-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            position: relative;
         }
-        .map-overlay.hidden { display: none; }
     </style>
 </head>
 <body>
@@ -39,10 +42,10 @@
         <img src="https://www.transparentpng.com/download/gold-frame/luxury-golden-corner-frame-png-8.png" class="full-frame top-0 left-0">
         <img src="https://www.transparentpng.com/download/gold-frame/luxury-golden-corner-frame-png-8.png" class="full-frame bottom-0 right-0" style="transform: rotate(180deg);">
         <div class="relative z-20 text-center">
-            <p class="tracking-[0.5em] text-xs uppercase mb-4 text-amber-200">The Wedding Of</p>
+            <p class="tracking-[0.5em] text-xs uppercase mb-4 text-amber-200 text-shadow">The Wedding Of</p>
             <h1 class="text-6xl md:text-8xl font-aesthetic text-amber-400 mb-6">Umi & Ircham</h1>
             <p class="text-sm tracking-widest mb-10">SABTU, 23 MEI 2026</p>
-            <div class="p-6 bg-black/40 backdrop-blur-md border border-white/10 rounded-lg max-w-xs mx-auto">
+            <div class="p-6 bg-black/40 backdrop-blur-md border border-white/10 rounded-lg max-w-xs mx-auto shadow-2xl">
                 <h2 id="nama-tamu" class="text-xl font-bold mb-6">Tamu Spesial</h2>
                 <button onclick="mulaiUndangan()" class="px-8 py-3 bg-white text-black font-bold rounded-full hover:bg-amber-400 transition-all text-xs shadow-2xl uppercase tracking-widest">Buka Undangan</button>
             </div>
@@ -60,47 +63,47 @@
         </section>
 
         <section class="bg-[#0a0a0a]">
-            <h2 class="text-amber-400 font-aesthetic text-5xl mb-8">Lokasi & RSVP</h2>
-            <div class="w-full max-w-2xl px-6">
-                
-                <div class="map-container mb-6 border border-amber-400/20 shadow-2xl">
-                    <div id="map-overlay" class="map-overlay" onclick="aktifkanPeta()">
-                        <div class="text-center">
-                             <p class="text-white text-[10px] uppercase tracking-widest mb-3">Ketuk untuk melihat peta</p>
-                             <span class="bg-amber-500 text-black px-6 py-2 rounded-full text-xs font-bold shadow-lg uppercase tracking-widest">Aktifkan Peta</span>
-                        </div>
-                    </div>
-                    <iframe id="google-map" 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.1030614539617!2d112.6938!3d-7.6713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNDAnMTYuNyJTIDExMsKwNDEnMzcuNyJF!5e0!3m2!1sid!2sid!4v1715250000000!5m2!1sid!2sid" 
-                        class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+            <h2 class="text-amber-400 font-aesthetic text-5xl mb-6 uppercase tracking-widest">Doa & Harapan</h2>
+            
+            <div class="px-6 w-full max-w-2xl">
+                <div class="quote-container animate__animated animate__fadeIn">
+                    <p class="text-amber-400 text-3xl mb-4 font-arabic">وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا...</p>
+                    <p class="text-sm leading-relaxed italic text-gray-200 mb-4">
+                        "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri supaya kamu merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih sayang. Sesungguhnya pada yang demikian itu terdapat tanda-tanda bagi orang-orang yang beriman."
+                    </p>
+                    <p class="text-xs font-bold text-amber-500">(QS. Ar-Rum: 21)</p>
                 </div>
                 
-                <a href="https://maps.app.goo.gl/NLmN8bP34a2ugDQy5?g_st=aw" 
-                   target="_blank" 
-                   class="inline-block mb-10 px-8 py-3 bg-amber-500 text-black font-bold rounded-full text-xs uppercase tracking-widest shadow-xl hover:bg-amber-400 transition-all">
-                    Buka Petunjuk Jalan (Navigasi)
-                </a>
+                <div class="mt-8 mb-12">
+                    <p class="text-[10px] text-gray-500 uppercase tracking-[0.3em] mb-4">Lokasi Acara</p>
+                    <p class="text-sm mb-6 text-gray-300">Pandaan, Pasuruan, Jawa Timur</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=8MWW%2BVRJ%2C%20Pandaan" 
+                       target="_blank" 
+                       class="inline-block px-8 py-3 bg-amber-500 text-black font-bold rounded-full text-xs uppercase tracking-widest shadow-xl hover:bg-amber-400 transition-all">
+                        Buka Petunjuk Jalan (Google Maps)
+                    </a>
+                </div>
 
-                <form class="text-left bg-stone-900/80 p-8 rounded-2xl border border-white/10">
-                    <label class="block text-[10px] text-amber-200 mb-2 uppercase tracking-widest">Konfirmasi Kehadiran</label>
+                <form class="text-left bg-stone-900/80 p-8 rounded-2xl border border-white/10 shadow-2xl">
+                    <label class="block text-[10px] text-amber-200 mb-2 uppercase tracking-widest">Konfirmasi Kehadiran (RSVP)</label>
                     <input type="text" class="w-full bg-black/40 border border-white/20 p-3 rounded mb-4 outline-none text-white focus:border-amber-400" placeholder="Nama Anda">
-                    <button type="button" onclick="alert('Terima kasih!')" class="w-full py-3 bg-amber-500 text-black font-bold rounded text-xs uppercase tracking-widest">Kirim RSVP</button>
+                    <button type="button" onclick="alert('Terima kasih!')" class="w-full py-3 bg-amber-500 text-black font-bold rounded text-xs uppercase tracking-widest shadow-md">Kirim Konfirmasi</button>
                 </form>
             </div>
         </section>
 
         <section class="bg-black">
-            <h2 class="text-amber-400 font-aesthetic text-5xl mb-4">Kado Digital</h2>
+            <h2 class="text-amber-400 font-aesthetic text-5xl mb-12">Kado Digital</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-xl px-6">
                 <div class="p-6 border border-amber-400/20 rounded-xl bg-stone-900 shadow-xl">
-                    <p class="text-xs text-amber-200 mb-2 uppercase">Bank BCA</p>
-                    <p class="text-lg font-bold tracking-widest">1234567890</p>
+                    <p class="text-xs text-amber-200 mb-2 uppercase tracking-tighter">Bank BCA</p>
+                    <p class="text-lg font-bold tracking-widest text-white">1234567890</p>
                     <p class="text-[10px] text-gray-500 mt-2 uppercase text-center">A/N Umi Nurmalisa</p>
-                    <button onclick="copyText('1234567890')" class="mt-4 text-[10px] text-amber-400 border border-amber-400/20 px-4 py-1 rounded-full block mx-auto">Salin</button>
+                    <button onclick="copyText('1234567890')" class="mt-4 text-[10px] text-amber-400 border border-amber-400/20 px-4 py-1 rounded-full block mx-auto hover:bg-amber-400 hover:text-black transition-all">Salin Rekening</button>
                 </div>
                 <div class="p-6 border border-amber-400/20 rounded-xl bg-stone-900 shadow-xl">
-                    <p class="text-xs text-amber-200 mb-2 uppercase">DANA</p>
-                    <p class="text-lg font-bold tracking-widest">081234567890</p>
+                    <p class="text-xs text-amber-200 mb-2 uppercase tracking-tighter">DANA</p>
+                    <p class="text-lg font-bold tracking-widest text-white">081234567890</p>
                     <p class="text-[10px] text-gray-500 mt-2 uppercase text-center">A/N Muhammad Ircham</p>
                 </div>
             </div>
@@ -116,10 +119,6 @@
             document.getElementById('konten').classList.remove('hidden');
             window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
             document.body.style.overflow = 'auto';
-        }
-
-        function aktifkanPeta() {
-            document.getElementById('map-overlay').classList.add('hidden');
         }
 
         function copyText(text) {
